@@ -1,28 +1,32 @@
 # ObjectToGraphql
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/object_to_graphql`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
-## Installation
-
-Add this line to your application's Gemfile:
-
 ```ruby
 gem 'object_to_graphql'
 ```
 
-And then execute:
-
-    $ bundle install
-
-Or install it yourself as:
-
-    $ gem install object_to_graphql
-
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+object = {
+  user: {
+    name: "Alice",
+    email_address: "alice@example.com",
+    accounts: [
+      { name: "alice1" },
+    ],
+  }
+}
+ObjectToGraphql.generate(object)
+# => {
+#      user: {
+#        name
+#        emailAddress
+#        accounts: {
+#          name
+#        }
+#      }
+#    }
+```
 
 ## Development
 
