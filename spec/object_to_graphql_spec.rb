@@ -1,11 +1,28 @@
 # frozen_string_literal: true
 
 RSpec.describe ObjectToGraphql do
-  it "has a version number" do
-    expect(ObjectToGraphql::VERSION).not_to be nil
-  end
+  it "generates a GraphQL query" do
+    object = {
+      user: {
+        name: "Alice",
+        email_address: "alice@example.com",
+        accounts: [
+          { name: "alice1" },
+        ],
+      }
+    }
+    query = ObjectToGraphql.generate(object)
 
-  it "does something useful" do
-    expect(false).to eq(true)
+    expect(query).to eq(<<~GRAPHQL)
+      {
+        user: {
+          name
+          emailAddress
+          accounts: {
+            name
+          }
+        }
+      }
+    GRAPHQL
   end
 end
