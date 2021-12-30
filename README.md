@@ -42,6 +42,7 @@ object = {
 }
 
 arguments = [
+  # [[:path, :to, :the_field, :to_be_injected_argument], {name: argument_name, value: argument_value}]
   [[:user], {name: "ID", value: "id-1"}]
   [[:user, :name], {name: "separator", value: ","}],
   [[:user, :accounts], {name: "order", value: "desc"}]
