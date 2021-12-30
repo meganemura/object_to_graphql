@@ -1,14 +1,4 @@
 module ObjectToGraphql
-  class Node
-    attr_reader :key
-    attr_reader :value
-
-    def initialize(key:, value:)
-      @key = key
-      @value = value
-    end
-  end
-
   class ObjectParser
     def self.parse(object)
       new(object).parse
@@ -22,10 +12,10 @@ module ObjectToGraphql
 
     def parse
       selections = extract_selections(object)
-      operation_definition = GraphQL::Language::Nodes::OperationDefinition.new(name: nil,
+      operation_definition = Nodes::OperationDefinition.new(name: nil,
                                                                                selections: selections)
 
-      GraphQL::Language::Nodes::Document.new(definitions: [operation_definition])
+      Nodes::Document.new(definitions: [operation_definition])
     end
 
     def extract_selections(object)
@@ -33,13 +23,13 @@ module ObjectToGraphql
         lower_camelized_key = key.to_s.camelize(:lower)
         case value
         when Hash
-          GraphQL::Language::Nodes::Field.new(name: lower_camelized_key,
+          Nodes::Field.new(name: lower_camelized_key,
                                               selections: extract_selections(value))
         when Array
-          GraphQL::Language::Nodes::Field.new(name: lower_camelized_key,
+          Nodes::Field.new(name: lower_camelized_key,
                                               selections: extract_selections(value.first))
         else
-          GraphQL::Language::Nodes::Field.new(name: lower_camelized_key)
+          Nodes::Field.new(name: lower_camelized_key)
         end
       end
     end
