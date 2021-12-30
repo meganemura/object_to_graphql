@@ -12,5 +12,7 @@ module ObjectToGraphql
         @value = attributes[:value]
       end
     end
+
+    class Argument < GraphQL::Language::Nodes::Argument; end
   end
 end
