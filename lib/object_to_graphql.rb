@@ -13,7 +13,7 @@ require_relative "object_to_graphql/nodes"
 
 module ObjectToGraphql
   def self.generate(object, arguments = [], variables = [])
-    parsed = ObjectParser.parse(object, arguments, variables)
-    parsed.to_query_string.lstrip
+    document = ObjectParser.parse(object, arguments, variables)
+    document.to_query_string.lstrip
   end
 end

@@ -5,19 +5,17 @@ module ObjectToGraphql
     end
 
     attr_reader :object
-    attr_reader :arguments
-    attr_reader :variables
+    attr_reader :original_arguments
+    attr_reader :original_variables
 
     def initialize(object, arguments, variables)
       @object = object
-      @arguments = arguments
-      @variables = variables
+      @original_arguments = arguments
+      @original_variables = variables
     end
 
     def parse
       selections = extract_selections(object, [])
-      variables = build_variables
-
       operation_type = variables.empty? ? nil : "query"
       operation_definition = Nodes::OperationDefinition.new(name: nil,
                                                             selections: selections,
@@ -32,12 +30,7 @@ module ObjectToGraphql
         lower_camelized_key = key.to_s.camelize(:lower)
 
         current = routes + [key]
-        args = arguments
-          .select { |(array, _hash)| current == array }
-          .map { |(_array, hash)|
-            Nodes::Argument.new(name: hash[:name],
-                                value: argument_value(hash[:value]))
-          }
+        args = arguments.select { |(route, _)| route == current }.map(&:last)
 
         case value
         when Hash
@@ -64,10 +57,18 @@ module ObjectToGraphql
       end
     end
 
-    def build_variables
-      return [] if variables.empty?
+    def arguments
+      @arguments ||= original_arguments.map do |(route, argument)|
+        [
+          route,
+          Nodes::Argument.new(name: argument[:name],
+                              value: argument_value(argument[:value]))
+        ]
+      end
+    end
 
-      variables.map do |variable|
+    def variables
+      @variables ||= original_variables.map do |variable|
         Nodes::VariableDefinition.new(name: variable_name(variable[:name]),
                                       type: variable_type(variable[:type]))
       end
