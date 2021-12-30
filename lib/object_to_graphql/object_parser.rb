@@ -25,21 +25,21 @@ module ObjectToGraphql
       Nodes::Document.new(definitions: [operation_definition])
     end
 
-    def extract_selections(object, routes = [])
+    def extract_selections(object, path = [])
       object.map do |key, value|
         lower_camelized_key = key.to_s.camelize(:lower)
 
-        current = routes + [key]
-        args = arguments.select { |(route, _)| route == current }.map(&:last)
+        current_path = path + [key]
+        args = arguments.select { |(route, _)| route == current_path }.map(&:last)
 
         case value
         when Hash
           Nodes::Field.new(name: lower_camelized_key,
-                           selections: extract_selections(value, current),
+                           selections: extract_selections(value, current_path),
                            arguments: args)
         when Array
           Nodes::Field.new(name: lower_camelized_key,
-                           selections: extract_selections(value.first, current),
+                           selections: extract_selections(value.first, current_path),
                            arguments: args)
         else
           Nodes::Field.new(name: lower_camelized_key,
