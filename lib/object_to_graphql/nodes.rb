@@ -14,5 +14,9 @@ module ObjectToGraphql
     end
 
     class Argument < GraphQL::Language::Nodes::Argument; end
+    class VariableIdentifier < GraphQL::Language::Nodes::VariableIdentifier; end
+    class VariableDefinition < GraphQL::Language::Nodes::VariableDefinition; end
+    class NonNullType < GraphQL::Language::Nodes::NonNullType; end
+    class TypeName < GraphQL::Language::Nodes::TypeName; end
   end
 end

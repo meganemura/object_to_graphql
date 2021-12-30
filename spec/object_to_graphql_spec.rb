@@ -88,4 +88,37 @@ RSpec.describe ObjectToGraphql do
       }
     GRAPHQL
   end
+
+  it "generates a GraphQL query with query arguments" do
+    object = {
+      user: {
+        name: "Alice",
+        email_address: "alice@example.com",
+        accounts: [
+          {name: "alice1"}
+        ]
+      }
+    }
+
+    arguments = [
+      [[:user], {name: "id", value: "$user_id"}],
+    ]
+    variables = [
+      {name: "$user_id", type: "ID!"}
+    ]
+
+    query = ObjectToGraphql.generate(object, arguments, variables)
+
+    expect(query).to eq(<<~GRAPHQL.chomp)
+      query($user_id: ID!) {
+        user(id: $user_id) {
+          name
+          emailAddress
+          accounts {
+            name
+          }
+        }
+      }
+    GRAPHQL
+  end
 end
