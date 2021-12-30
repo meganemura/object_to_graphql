@@ -21,22 +21,22 @@ module ObjectToGraphql
     end
 
     def parse
-      operation_definition = GraphQL::Language::Nodes::OperationDefinition.new
-      selections = parse_query(object)
-      operation_definition = operation_definition.merge(selections: selections)
+      selections = extract_selections(object)
+      operation_definition = GraphQL::Language::Nodes::OperationDefinition.new(selections: selections)
+
       GraphQL::Language::Nodes::Document.new(definitions: [operation_definition])
     end
 
-    def parse_query(object)
+    def extract_selections(object)
       object.map do |key, value|
         lower_camelized_key = key.to_s.camelize(:lower)
         case value
         when Hash
           GraphQL::Language::Nodes::Field.new(name: lower_camelized_key,
-                                              selections: parse_query(value))
+                                              selections: extract_selections(value))
         when Array
           GraphQL::Language::Nodes::Field.new(name: lower_camelized_key,
-                                              selections: parse_query(value.first))
+                                              selections: extract_selections(value.first))
         else
           GraphQL::Language::Nodes::Field.new(name: lower_camelized_key)
         end
