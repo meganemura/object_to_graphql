@@ -11,14 +11,16 @@ RSpec.describe ObjectToGraphql do
         ],
       }
     }
-    query = ObjectToGraphql.generate(object)
+    parsed = ObjectToGraphql::ObjectParser.parse(object)
+    # query = ObjectToGraphql::QueryBuilder.build(object)
+    query = parsed.to_query_string.lstrip
 
-    expect(query).to eq(<<~GRAPHQL)
+    expect(query).to eq(<<~GRAPHQL.chomp)
       {
-        user: {
+        user {
           name
           emailAddress
-          accounts: {
+          accounts {
             name
           }
         }

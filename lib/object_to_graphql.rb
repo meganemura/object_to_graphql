@@ -5,6 +5,8 @@ require "active_support/isolated_execution_state"
 
 require "active_support/core_ext/string"
 require "active_support/core_ext/hash/keys"
+require "graphql"
+
 require_relative "object_to_graphql/object_parser"
 require_relative "object_to_graphql/query_builder"
 require_relative "object_to_graphql/version"
