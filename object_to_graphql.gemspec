@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors = ["meganemura"]
   spec.email = ["meganemura@users.noreply.github.com"]
 
-  spec.summary = "Generate GraphQL query from object"
+  spec.summary = "GraphQL Query generator from Ruby object structure"
   spec.description = spec.summary
   spec.homepage = "https://github.com/meganemura/object_to_graphql"
   spec.license = "MIT"
