@@ -22,7 +22,8 @@ module ObjectToGraphql
 
     def parse
       selections = extract_selections(object)
-      operation_definition = GraphQL::Language::Nodes::OperationDefinition.new(selections: selections)
+      operation_definition = GraphQL::Language::Nodes::OperationDefinition.new(name: nil,
+                                                                               selections: selections)
 
       GraphQL::Language::Nodes::Document.new(definitions: [operation_definition])
     end

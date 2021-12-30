@@ -12,6 +12,7 @@ require_relative "object_to_graphql/version"
 
 module ObjectToGraphql
   def self.generate(object)
-    ObjectParser.parse(object)
+    parsed = ObjectParser.parse(object)
+    parsed.to_query_string.lstrip
   end
 end
