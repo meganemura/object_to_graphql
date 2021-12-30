@@ -24,12 +24,13 @@ module ObjectToGraphql
         case value
         when Hash
           Nodes::Field.new(name: lower_camelized_key,
-                                              selections: extract_selections(value))
+                           selections: extract_selections(value))
         when Array
           Nodes::Field.new(name: lower_camelized_key,
-                                              selections: extract_selections(value.first))
+                           selections: extract_selections(value.first))
         else
-          Nodes::Field.new(name: lower_camelized_key)
+          Nodes::Field.new(name: lower_camelized_key,
+                           value: value)
         end
       end
     end
