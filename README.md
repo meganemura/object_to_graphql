@@ -1,5 +1,7 @@
 # ObjectToGraphql
 
+GraphQL Query generator from Ruby object structure.
+
 ```ruby
 gem 'object_to_graphql'
 ```
