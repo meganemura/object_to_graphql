@@ -12,7 +12,6 @@ RSpec.describe ObjectToGraphql do
       }
     }
     parsed = ObjectToGraphql::ObjectParser.parse(object)
-    # query = ObjectToGraphql::QueryBuilder.build(object)
     query = parsed.to_query_string.lstrip
 
     expect(query).to eq(<<~GRAPHQL.chomp)

@@ -8,13 +8,10 @@ require "active_support/core_ext/hash/keys"
 require "graphql"
 
 require_relative "object_to_graphql/object_parser"
-require_relative "object_to_graphql/query_builder"
 require_relative "object_to_graphql/version"
 
 module ObjectToGraphql
   def self.generate(object)
-    parsed = ObjectParser.parse(object)
-
-    query = QueryBuilder.build(parsed)
+    ObjectParser.parse(object)
   end
 end
