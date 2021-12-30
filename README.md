@@ -18,10 +18,10 @@ object = {
 }
 ObjectToGraphql.generate(object)
 # => {
-#      user: {
+#      user {
 #        name
 #        emailAddress
-#        accounts: {
+#        accounts {
 #          name
 #        }
 #      }
@@ -47,10 +47,10 @@ arguments = [
 
 ObjectToGraphql.generate(object, arguments)
 # => {
-#      user(ID: "id-1"): {
+#      user(ID: "id-1") {
 #        name
 #        emailAddress
-#        accounts: {
+#        accounts {
 #          name
 #        }
 #      }
