@@ -28,33 +28,27 @@ module ObjectToGraphql
     def extract_selections(object, path = [])
       object.map do |key, value|
         lower_camelized_key = key.to_s.camelize(:lower)
-
         current_path = path + [key]
-        args = arguments.select { |(route, _)| route == current_path }.map(&:last)
 
         case value
         when Hash
           Nodes::Field.new(name: lower_camelized_key,
                            selections: extract_selections(value, current_path),
-                           arguments: args)
+                           arguments: select_arguments_for(current_path))
         when Array
           Nodes::Field.new(name: lower_camelized_key,
                            selections: extract_selections(value.first, current_path),
-                           arguments: args)
+                           arguments: select_arguments_for(current_path))
         else
           Nodes::Field.new(name: lower_camelized_key,
                            value: value,
-                           arguments: args)
+                           arguments: select_arguments_for(current_path))
         end
       end
     end
 
-    def argument_value(str)
-      if str.start_with?("$")
-        Nodes::VariableIdentifier.new(name: str.delete_prefix("$"))
-      else
-        str
-      end
+    def select_arguments_for(path)
+      arguments.select { |(route, _)| route == path }.map(&:last)
     end
 
     def arguments
@@ -64,6 +58,14 @@ module ObjectToGraphql
           Nodes::Argument.new(name: argument[:name],
                               value: argument_value(argument[:value]))
         ]
+      end
+    end
+
+    def argument_value(str)
+      if str.start_with?("$")
+        Nodes::VariableIdentifier.new(name: str.delete_prefix("$"))
+      else
+        str
       end
     end
 
