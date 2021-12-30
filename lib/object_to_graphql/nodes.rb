@@ -1,5 +1,9 @@
 module ObjectToGraphql
   module Nodes
+    class Document < GraphQL::Language::Nodes::Document; end
+
+    class OperationDefinition < GraphQL::Language::Nodes::OperationDefinition; end
+
     class Field < GraphQL::Language::Nodes::Field
       attr_reader :value
 

@@ -9,9 +9,7 @@ require "graphql"
 
 require_relative "object_to_graphql/object_parser"
 require_relative "object_to_graphql/version"
-require_relative "object_to_graphql/nodes/document"
-require_relative "object_to_graphql/nodes/field"
-require_relative "object_to_graphql/nodes/operation_definition"
+require_relative "object_to_graphql/nodes"
 
 module ObjectToGraphql
   def self.generate(object)
