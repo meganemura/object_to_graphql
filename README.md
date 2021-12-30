@@ -80,7 +80,7 @@ variables = [
   {name: "$user_id", type: "ID!"}
 ]
 
-ObjectToGraphql.generate(object, arguments)
+ObjectToGraphql.generate(object, arguments, variables)
 # => query($user_id: ID!) {
 #      user(id: $user_id) {
 #        name
