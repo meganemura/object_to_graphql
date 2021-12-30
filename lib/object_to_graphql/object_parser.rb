@@ -26,7 +26,7 @@ module ObjectToGraphql
 
         current = routes + [key]
         args = arguments.select { |(array, _hash)| current == array }
-                             .map { |(_array, hash)| Nodes::Argument.new(name: hash[:name], value: hash[:value]) }
+          .map { |(_array, hash)| Nodes::Argument.new(name: hash[:name], value: hash[:value]) }
 
         case value
         when Hash

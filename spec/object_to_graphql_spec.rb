@@ -7,8 +7,8 @@ RSpec.describe ObjectToGraphql do
         name: "Alice",
         email_address: "alice@example.com",
         accounts: [
-          { name: "alice1" },
-        ],
+          {name: "alice1"}
+        ]
       }
     }
 
@@ -33,13 +33,13 @@ RSpec.describe ObjectToGraphql do
         name: "Alice",
         email_address: "alice@example.com",
         accounts: [
-          { name: "alice1" },
-        ],
+          {name: "alice1"}
+        ]
       }
     }
 
     arguments = [
-      [[:user], { name: "ID", value: "id-1" }],
+      [[:user], {name: "ID", value: "id-1"}]
     ]
 
     query = ObjectToGraphql.generate(object, arguments)

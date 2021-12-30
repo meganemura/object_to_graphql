@@ -3,15 +3,15 @@
 require_relative "lib/object_to_graphql/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "object_to_graphql"
-  spec.version       = ObjectToGraphql::VERSION
-  spec.authors       = ["meganemura"]
-  spec.email         = ["meganemura@users.noreply.github.com"]
+  spec.name = "object_to_graphql"
+  spec.version = ObjectToGraphql::VERSION
+  spec.authors = ["meganemura"]
+  spec.email = ["meganemura@users.noreply.github.com"]
 
-  spec.summary       = "Generate GraphQL query from object"
-  spec.description   = spec.summary
-  spec.homepage      = "https://github.com/meganemura/object_to_graphql"
-  spec.license       = "MIT"
+  spec.summary = "Generate GraphQL query from object"
+  spec.description = spec.summary
+  spec.homepage = "https://github.com/meganemura/object_to_graphql"
+  spec.license = "MIT"
   spec.required_ruby_version = ">= 2.4.0"
 
   spec.metadata["homepage_uri"] = spec.homepage
@@ -25,8 +25,8 @@ Gem::Specification.new do |spec|
       (f == __FILE__) || f.match(%r{\A(?:(?:test|spec|features)/|\.(?:git|travis|circleci)|appveyor)})
     end
   end
-  spec.bindir        = "exe"
-  spec.executables   = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
+  spec.bindir = "exe"
+  spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
   # Uncomment to register a new dependency of your gem
