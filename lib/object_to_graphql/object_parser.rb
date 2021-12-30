@@ -1,19 +1,21 @@
 module ObjectToGraphql
   class ObjectParser
-    def self.parse(object)
-      new(object).parse
+    def self.parse(object, arguments)
+      new(object, arguments).parse
     end
 
     attr_reader :object
+    attr_reader :arguments
 
-    def initialize(object)
+    def initialize(object, arguments)
       @object = object
+      @arguments = arguments
     end
 
     def parse
       selections = extract_selections(object)
       operation_definition = Nodes::OperationDefinition.new(name: nil,
-                                                                               selections: selections)
+                                                            selections: selections)
 
       Nodes::Document.new(definitions: [operation_definition])
     end
