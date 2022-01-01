@@ -4,7 +4,7 @@ require_relative "lib/object_to_graphql/version"
 
 Gem::Specification.new do |spec|
   spec.name = "object_to_graphql"
-  spec.version = ObjectToGraphql::VERSION
+  spec.version = ObjectToGraphQL::VERSION
   spec.authors = ["meganemura"]
   spec.email = ["meganemura@users.noreply.github.com"]
 

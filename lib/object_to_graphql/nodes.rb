@@ -1,4 +1,4 @@
-module ObjectToGraphql
+module ObjectToGraphQL
   module Nodes
     class Document < GraphQL::Language::Nodes::Document; end
 

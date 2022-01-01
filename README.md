@@ -1,4 +1,4 @@
-# ObjectToGraphql
+# ObjectToGraphQL
 
 GraphQL Query generator from Ruby object structure.
 
@@ -18,7 +18,7 @@ object = {
     ],
   }
 }
-ObjectToGraphql.generate(object)
+ObjectToGraphQL.generate(object)
 # => {
 #      user {
 #        name
@@ -50,7 +50,7 @@ arguments = [
   [[:user, :accounts], {name: "order", value: "desc"}]
 ]
 
-ObjectToGraphql.generate(object, arguments)
+ObjectToGraphQL.generate(object, arguments)
 # => {
 #      user(ID: "id-1") {
 #        name(separator: ",")
@@ -82,7 +82,7 @@ variables = [
   {name: "$user_id", type: "ID!"}
 ]
 
-ObjectToGraphql.generate(object, arguments, variables)
+ObjectToGraphQL.generate(object, arguments, variables)
 # => query($user_id: ID!) {
 #      user(id: $user_id) {
 #        name
@@ -103,4 +103,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the ObjectToGraphql project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/object_to_graphql/blob/main/CODE_OF_CONDUCT.md).
+Everyone interacting in the ObjectToGraphQL project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/object_to_graphql/blob/main/CODE_OF_CONDUCT.md).

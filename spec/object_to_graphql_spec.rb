@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe ObjectToGraphql do
+RSpec.describe ObjectToGraphQL do
   it "generates a GraphQL query" do
     object = {
       user: {
@@ -12,7 +12,7 @@ RSpec.describe ObjectToGraphql do
       }
     }
 
-    query = ObjectToGraphql.generate(object)
+    query = ObjectToGraphQL.generate(object)
 
     expect(query).to eq(<<~GRAPHQL.chomp)
       {
@@ -42,7 +42,7 @@ RSpec.describe ObjectToGraphql do
       [[:user], {name: "ID", value: "id-1"}]
     ]
 
-    query = ObjectToGraphql.generate(object, arguments)
+    query = ObjectToGraphQL.generate(object, arguments)
 
     expect(query).to eq(<<~GRAPHQL.chomp)
       {
@@ -74,7 +74,7 @@ RSpec.describe ObjectToGraphql do
       [[:user, :accounts], {name: "order", value: "desc"}]
     ]
 
-    query = ObjectToGraphql.generate(object, arguments)
+    query = ObjectToGraphQL.generate(object, arguments)
 
     expect(query).to eq(<<~GRAPHQL.chomp)
       {
@@ -107,7 +107,7 @@ RSpec.describe ObjectToGraphql do
       {name: "$user_id", type: "ID!"}
     ]
 
-    query = ObjectToGraphql.generate(object, arguments, variables)
+    query = ObjectToGraphQL.generate(object, arguments, variables)
 
     expect(query).to eq(<<~GRAPHQL.chomp)
       query($user_id: ID!) {

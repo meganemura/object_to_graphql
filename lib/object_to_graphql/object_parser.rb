@@ -1,4 +1,4 @@
-module ObjectToGraphql
+module ObjectToGraphQL
   class ObjectParser
     def self.parse(object, arguments = [], variables = [])
       new(object, arguments, variables).parse
@@ -84,10 +84,10 @@ module ObjectToGraphql
       not_null = str.end_with?("!")
       name = str.delete_suffix("!")
 
-      type_name = ObjectToGraphql::Nodes::TypeName.new(name: name)
+      type_name = ObjectToGraphQL::Nodes::TypeName.new(name: name)
 
       if not_null
-        ObjectToGraphql::Nodes::NonNullType.new(of_type: type_name)
+        ObjectToGraphQL::Nodes::NonNullType.new(of_type: type_name)
       else
         type_name
       end
