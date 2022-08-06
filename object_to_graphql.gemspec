@@ -34,6 +34,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "graphql"
   spec.add_development_dependency "standard"
   spec.add_development_dependency "simplecov"
+  spec.add_development_dependency "simplecov-cobertura"
 
   # For more information and examples about making a new gem, checkout our
   # guide at: https://bundler.io/guides/creating_gem.html
