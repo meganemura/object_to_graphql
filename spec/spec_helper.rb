@@ -66,14 +66,14 @@ if ENV["CI"] == "true"
             # bunbo = x.sum(&:coverage)
             bunbo = x.size
             return if bunbo == 0
-            bunshi = x.select(&:covered?).sum(&:coverage)
+            bunshi = x.select(&:covered?).size
 
             # pct_coverage, branches_covered = branched_lines_covered.include?(file_line.number) ? [100, '1/1'] : [0, '0/1']
 
             pct_coverage = bunshi * 100 / bunbo
             branches_covered = "#{bunshi}/#{bunbo}"
 
-            if file_line.number == 29
+            if file_line.number == 19
               # binding.irb
             end
 
