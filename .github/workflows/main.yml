@@ -25,4 +25,6 @@ jobs:
         bundler-cache: true
     - name: Run the default task
       run: bundle exec rake
+    - name: cat xml
+      run: cat coverage/coverage.xml
     - uses: codecov/codecov-action@v3
