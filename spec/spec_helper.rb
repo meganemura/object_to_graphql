@@ -2,6 +2,14 @@
 
 require "object_to_graphql"
 
+if ENV["CI"] == "true"
+  require "simplecov"
+  require 'simplecov-cobertura'
+
+  SimpleCov.start("rails")
+  SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
+end
+
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = ".rspec_status"
