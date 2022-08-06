@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "object_to_graphql"
-
 if ENV["CI"] == "true"
   require "simplecov"
   require 'simplecov-cobertura'
@@ -11,6 +9,8 @@ if ENV["CI"] == "true"
   end
   SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
 end
+
+require "object_to_graphql"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
