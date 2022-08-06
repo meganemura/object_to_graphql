@@ -65,6 +65,7 @@ GEM
       rexml
       simplecov (~> 0.19)
     simplecov-html (0.12.3)
+    simplecov-lcov (0.8.0)
     simplecov_json_formatter (0.1.4)
     standard (1.1.1)
       rubocop (= 1.14.0)
@@ -85,6 +86,7 @@ DEPENDENCIES
   rspec (~> 3.0)
   simplecov
   simplecov-cobertura
+  simplecov-lcov
   standard
 
 BUNDLED WITH
