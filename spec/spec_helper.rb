@@ -6,7 +6,9 @@ if ENV["CI"] == "true"
   require "simplecov"
   require 'simplecov-cobertura'
 
-  SimpleCov.start("rails")
+  SimpleCov.start("rails") do
+    enable_coverage :branch
+  end
   SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
 end
 
