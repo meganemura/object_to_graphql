@@ -4,8 +4,10 @@ require "object_to_graphql"
 
 if ENV["CI"] == "true"
   require "simplecov"
+  require 'simplecov-cobertura'
 
   SimpleCov.start("rails")
+  SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
 end
 
 RSpec.configure do |config|
