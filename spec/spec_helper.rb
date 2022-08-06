@@ -2,12 +2,12 @@
 
 if ENV["CI"] == "true"
   require "simplecov"
-  require 'simplecov-cobertura'
+  require "simplecov-lcov"
 
   SimpleCov.start do
     enable_coverage :branch
   end
-  SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
+  SimpleCov.formatter = SimpleCov::Formatter::LcovFormatter
 end
 
 require "object_to_graphql"
