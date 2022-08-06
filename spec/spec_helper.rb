@@ -1,19 +1,21 @@
 # frozen_string_literal: true
 
-if ENV["CI"] == "true"
-  require "simplecov"
-  require "simplecov-html"
-  require "simplecov-lcov"
-
-  SimpleCov.start do
-    enable_coverage :branch
-  end
-  # SimpleCov.formatter = SimpleCov::Formatter::LcovFormatter
-  SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new([
-    SimpleCov::Formatter::HTMLFormatter,
-    SimpleCov::Formatter::LcovFormatter
-  ])
-end
+# if ENV["CI"] == "true"
+#   require "simplecov"
+#   require "simplecov-html"
+#   require "simplecov-cobertura"
+#   require "simplecov-lcov"
+# 
+#   SimpleCov.start do
+#     enable_coverage :branch
+#   end
+#   # SimpleCov.formatter = SimpleCov::Formatter::LcovFormatter
+#   SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new([
+#     SimpleCov::Formatter::HTMLFormatter,
+#     SimpleCov::Formatter::CoberturaFormatter,
+#     # SimpleCov::Formatter::LcovFormatter
+#   ])
+# end
 
 require "object_to_graphql"
 
