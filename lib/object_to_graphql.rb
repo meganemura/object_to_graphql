@@ -28,6 +28,11 @@ end
 
 puts '' if true || false
 
+x = 1
+if x
+  puts ''
+end
+
 module ObjectToGraphQL
   def self.generate(object, arguments = [], variables = [])
     document = ObjectParser.parse(object, arguments, variables)
