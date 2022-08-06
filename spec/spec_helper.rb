@@ -60,10 +60,11 @@ if ENV["CI"] == "true"
 
         def set_branch_attributes(line, file_line, branched_lines, total_branches)
           if branched_lines.include?(file_line.number)
-            branched_lines_covered = total_branches.select(&:covered?).map(&:start_line)
+            # branched_lines_covered = total_branches.select(&:covered?).map(&:start_line)
 
             x = total_branches.select { |branch| branch.start_line == file_line.number }
-            bunbo = x.sum(&:coverage)
+            # bunbo = x.sum(&:coverage)
+            bunbo = x.size
             return if bunbo == 0
             bunshi = x.select(&:covered?).sum(&:coverage)
 
@@ -71,6 +72,10 @@ if ENV["CI"] == "true"
 
             pct_coverage = bunshi * 100 / bunbo
             branches_covered = "#{bunshi}/#{bunbo}"
+
+            if file_line.number == 29
+              # binding.irb
+            end
 
             line.attributes['branch'] = 'true'
             line.attributes['condition-coverage'] = "#{pct_coverage}% (#{branches_covered})"
