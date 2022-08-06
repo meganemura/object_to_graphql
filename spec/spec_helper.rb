@@ -3,6 +3,7 @@
 if ENV["CI"] == "true"
   require "simplecov"
   require "simplecov-cobertura"
+  require "simplecov-html"
 
   module SimpleCov
     module Formatter
@@ -42,6 +43,7 @@ if ENV["CI"] == "true"
               class_.add_element(REXML::Element.new('methods'))
               class_.add_element(lines = REXML::Element.new('lines'))
 
+              # binding.irb
               branched_lines = file.branches.map(&:start_line)
               total_branches = file.total_branches
 
@@ -75,7 +77,7 @@ if ENV["CI"] == "true"
             pct_coverage = bunshi * 100 / bunbo
             branches_covered = "#{bunshi}/#{bunbo}"
 
-            if file_line.number == 19
+            if file_line.number == 29
               # binding.irb
             end
 
@@ -92,7 +94,12 @@ if ENV["CI"] == "true"
   SimpleCov.start do
     enable_coverage :branch
   end
-  SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
+  # SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
+  SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new([
+    SimpleCov::Formatter::HTMLFormatter,
+    SimpleCov::Formatter::CoberturaFormatter,
+    # SimpleCov::Formatter::LcovFormatter
+  ])
 end
 
 require "object_to_graphql"
