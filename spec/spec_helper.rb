@@ -65,7 +65,9 @@ if ENV["CI"] == "true"
             x = total_branches.select { |branch| branch.start_line == file_line.number }
             # bunbo = x.sum(&:coverage)
             bunbo = x.size
-            return if bunbo == 0
+            if bunbo == 0
+              puts 'x'
+            end
             bunshi = x.select(&:covered?).size
 
             # pct_coverage, branches_covered = branched_lines_covered.include?(file_line.number) ? [100, '1/1'] : [0, '0/1']
